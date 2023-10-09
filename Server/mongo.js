@@ -8,11 +8,11 @@ mongoose.connect("mongodb://localhost:27017/ecommerce_tut")
 })
 
 const userSchema = new mongoose.Schema({
-  name:{
+  FirstName:{
     type:String,
     required:true
   },
-  email:{
+  Email:{
     type:String,
     required:true
   },

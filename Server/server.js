@@ -13,7 +13,29 @@ app.get("/",cors(),(req,res) =>{
 
 })
 
+app.post("/signup",async(req,res)=>{
+  const form = req.body.form
+  const data = {
+    FirstName:form.FirstName,
+    Email:form.Email,
+    password:form.password
+  }
+
+  try{
+    const check = await userCollection.findOne({Email:form.Email})
+
+    if(check){
+      res.json("exist")
+    }
+    else{
+      res.json("notexist")
+      await userCollection.insertMany([data])
+    }
+  }
+  catch(e){
+      res.json("fail")
+  }
+})
 app.listen(PORT,()=>{
   console.log("port connected")
 })
-
